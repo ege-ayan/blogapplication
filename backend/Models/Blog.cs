@@ -1,20 +1,21 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-
 namespace backend.Models;
-
 public class Blog
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string? Id { get; set; }
 
-    [BsonElement("Name")]
-    public string BookName { get; set; } = null!;
+    [BsonElement("author_id")]
+    public required string AuthorId { get; set; }
 
-    public decimal Price { get; set; }
+    [BsonElement("title")]
+    public required string Title { get; set; }
 
-    public string Category { get; set; } = null!;
+    [BsonElement("content")]
+    public required string Content { get; set; }
 
-    public string Author { get; set; } = null!;
+    [BsonElement("image_url")]
+    public required string ImageUrl { get; set; }
 }

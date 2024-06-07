@@ -8,8 +8,7 @@ public class BlogsService
 {
     private readonly IMongoCollection<Blog> _blogsCollection;
 
-    public BlogsService(
-        IOptions<BlogStoreDatabaseSettings> blogStoreDatabaseSettings)
+    public BlogsService(IOptions<BlogStoreDatabaseSettings> blogStoreDatabaseSettings)
     {
         var mongoClient = new MongoClient(
             blogStoreDatabaseSettings.Value.ConnectionString);
@@ -26,6 +25,9 @@ public class BlogsService
 
     public async Task<Blog?> GetAsync(string id) =>
         await _blogsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+
+    public async Task<List<Blog>> GetByAuthorIdAsync(string authorId) =>
+        await _blogsCollection.Find(x => x.AuthorId == authorId).ToListAsync();
 
     public async Task CreateAsync(Blog newBlog) =>
         await _blogsCollection.InsertOneAsync(newBlog);

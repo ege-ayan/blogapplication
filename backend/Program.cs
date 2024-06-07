@@ -4,10 +4,11 @@ using backend.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<BlogStoreDatabaseSettings>(
-    builder.Configuration.GetSection("BlogStoreDatabase"));
+    builder.Configuration.GetSection("BlogDatabase"));
     
 builder.Services.AddControllers();
 builder.Services.AddSingleton<BlogsService>();
+builder.Services.AddSingleton<UsersService>();
 
 
 // Add services to the container.

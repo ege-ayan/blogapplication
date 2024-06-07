@@ -10,8 +10,8 @@ public class BlogsController : ControllerBase
 {
     private readonly BlogsService _blogsService;
 
-    public BlogsController(BlogsService BlogsService) =>
-        _blogsService = BlogsService;
+    public BlogsController(BlogsService blogsService) =>
+        _blogsService = blogsService;
 
     [HttpGet]
     public async Task<List<Blog>> Get() =>
@@ -20,14 +20,27 @@ public class BlogsController : ControllerBase
     [HttpGet("{id:length(24)}")]
     public async Task<ActionResult<Blog>> Get(string id)
     {
-        var Blog = await _blogsService.GetAsync(id);
+        var blog = await _blogsService.GetAsync(id);
 
-        if (Blog is null)
+        if (blog is null)
         {
             return NotFound();
         }
 
-        return Blog;
+        return blog;
+    }
+
+    [HttpGet("author/{authorId}")]
+    public async Task<ActionResult<List<Blog>>> GetByAuthorId(string authorId)
+    {
+        var blogs = await _blogsService.GetByAuthorIdAsync(authorId);
+
+        if (blogs is null || blogs.Count == 0)
+        {
+            return NotFound();
+        }
+
+        return blogs;
     }
 
     [HttpPost]
@@ -41,14 +54,14 @@ public class BlogsController : ControllerBase
     [HttpPut("{id:length(24)}")]
     public async Task<IActionResult> Update(string id, Blog updatedBlog)
     {
-        var Blog = await _blogsService.GetAsync(id);
+        var blog = await _blogsService.GetAsync(id);
 
-        if (Blog is null)
+        if (blog is null)
         {
             return NotFound();
         }
 
-        updatedBlog.Id = Blog.Id;
+        updatedBlog.Id = blog.Id;
 
         await _blogsService.UpdateAsync(id, updatedBlog);
 
@@ -58,9 +71,9 @@ public class BlogsController : ControllerBase
     [HttpDelete("{id:length(24)}")]
     public async Task<IActionResult> Delete(string id)
     {
-        var Blog = await _blogsService.GetAsync(id);
+        var blog = await _blogsService.GetAsync(id);
 
-        if (Blog is null)
+        if (blog is null)
         {
             return NotFound();
         }

@@ -7,4 +7,6 @@ public class BlogStoreDatabaseSettings
     public string DatabaseName { get; set; } = null!;
 
     public string BlogsCollectionName { get; set; } = null!;
+
+    public string UsersCollectionName { get; set; } = null!;
 }
