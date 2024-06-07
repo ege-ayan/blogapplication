@@ -33,7 +33,7 @@ export default function LoginPage() {
   return (
     <div className="w-full min-h-screen bg-[#1E1E1E] flex flex-col items-center justify-center">
       <motion.div
-        className="bg-[#C9C9C9] rounded-[30px] shadow-lg w-[740px] h-[585px] mt-[30px]"
+        className="bg-[#C9C9C9] rounded-[30px] shadow-lg w-[350px] md:w-[740px] h-[585px] mt-[30px]"
         initial="hidden"
         animate="visible"
         exit="exit"

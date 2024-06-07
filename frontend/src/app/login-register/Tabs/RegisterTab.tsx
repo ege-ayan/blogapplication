@@ -91,7 +91,7 @@ export default function RegisterTab() {
           </div>
           <div className="flex flex-col items-center justify-center gap-y-4">
             <button
-              className="w-[360px] h-[50px] rounded-[20px] bg-[#C62807]"
+              className="w-[200px] md:w-[360px] h-[50px] rounded-[20px] bg-[#C62807]"
               type="button"
               onClick={performRegister}
             >
