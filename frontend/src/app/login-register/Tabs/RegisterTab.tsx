@@ -12,7 +12,7 @@ export default function RegisterTab() {
     <div>
       <div className="flex flex-col mt-[35px] items-center ">
         <p className="text-black font-poppins text-2xl font-semibold leading-normal">
-          Welcome to Peach Cat
+          Welcome to Peach Cat!
         </p>
 
         <p className="text-[#595959] font-poppins text-xs font-normal leading-normal">
